@@ -347,7 +347,7 @@ class IssuesProcessor {
             if (!skipMessage) {
                 try {
                     yield this.client.issues.createComment({
-                       owner: github_1.context.repo.owner,
+                        owner: github_1.context.repo.owner,
                         repo: github_1.context.repo.repo,
                         issue_number: issue.number,
                         body: staleMessage

@@ -481,7 +481,7 @@ class IssuesProcessor {
             const issueLogger = new issue_logger_1.IssueLogger(issue);
 //            issueLogger.info(`Removing label "${label}" from issue #${issue.number}`);
 //            this.removedLabelIssues.push(issue);
-            this._operationsLeft -= 1;
+//            this._operationsLeft -= 1;
             // @todo remove the debug only to be able to test the code below
             if (this.options.debugOnly) {
                 return;

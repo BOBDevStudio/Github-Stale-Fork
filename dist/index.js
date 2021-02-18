@@ -347,7 +347,7 @@ class IssuesProcessor {
             if (!skipMessage) {
                 try {
                     yield this.client.issues.createComment({
-                        owner: github_1.context.repo.owner,
+                       owner: github_1.context.repo.owner,
                         repo: github_1.context.repo.repo,
                         issue_number: issue.number,
                         body: staleMessage
@@ -357,17 +357,17 @@ class IssuesProcessor {
                     issueLogger.error(`Error creating a comment: ${error.message}`);
                 }
             }
-            try {
-                yield this.client.issues.addLabels({
-                    owner: github_1.context.repo.owner,
-                    repo: github_1.context.repo.repo,
-                    issue_number: issue.number,
-                    labels: [staleLabel]
-                });
-            }
-            catch (error) {
-                issueLogger.error(`Error adding a label: ${error.message}`);
-            }
+//            try {
+//                yield this.client.issues.addLabels({
+//                    owner: github_1.context.repo.owner,
+//                    repo: github_1.context.repo.repo,
+//                    issue_number: issue.number,
+//                    labels: [staleLabel]
+//                });
+//            }
+//            catch (error) {
+//                issueLogger.error(`Error adding a label: ${error.message}`);
+//            }
         });
     }
     // Close an issue based on staleness
@@ -379,6 +379,17 @@ class IssuesProcessor {
             this._operationsLeft -= 1;
             if (this.options.debugOnly) {
                 return;
+            }
+	        try {
+                yield this.client.issues.lock({
+                    owner: github_1.context.repo.owner,
+                    repo: github_1.context.repo.repo,
+                    issue_number: issue.number,
+		    	    lock_reason: "resolved"
+                });
+            }
+            catch (error) {
+                issueLogger.error(`Error locking an issue: ${error.message}`);
             }
             if (closeMessage) {
                 try {
@@ -468,24 +479,24 @@ class IssuesProcessor {
     _removeLabel(issue, label) {
         return __awaiter(this, void 0, void 0, function* () {
             const issueLogger = new issue_logger_1.IssueLogger(issue);
-            issueLogger.info(`Removing label "${label}" from issue #${issue.number}`);
-            this.removedLabelIssues.push(issue);
+//            issueLogger.info(`Removing label "${label}" from issue #${issue.number}`);
+//            this.removedLabelIssues.push(issue);
             this._operationsLeft -= 1;
             // @todo remove the debug only to be able to test the code below
             if (this.options.debugOnly) {
                 return;
             }
-            try {
-                yield this.client.issues.removeLabel({
-                    owner: github_1.context.repo.owner,
-                    repo: github_1.context.repo.repo,
-                    issue_number: issue.number,
-                    name: label
-                });
-            }
-            catch (error) {
-                issueLogger.error(`Error removing a label: ${error.message}`);
-            }
+//            try {
+//                yield this.client.issues.removeLabel({
+//                    owner: github_1.context.repo.owner,
+//                    repo: github_1.context.repo.repo,
+//                    issue_number: issue.number,
+//                    name: label
+//                });
+//            }
+//            catch (error) {
+//                issueLogger.error(`Error removing a label: ${error.message}`);
+//            }
         });
     }
     // returns the creation date of a given label on an issue (or nothing if no label existed)

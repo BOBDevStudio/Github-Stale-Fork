@@ -209,8 +209,3 @@ To see the debug output from this action, you must set the secret `ACTIONS_STEP_
 You can run this action in debug only mode (no actions will be taken on your issues and pull requests) by passing `debug-only` to `true` as an argument to the action.  
 You can also increase the maximum number of operations per run by passing `operations-per-run` to `100` for example.  
 Finally, you could also change the cron job frequency in the stale workflow to run stale more often.
-
-### Contributing
-
-You wish to contribute?  
-Check out the [contributing](CONTRIBUTING.md) file before helping us.

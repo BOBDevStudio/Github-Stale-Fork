@@ -344,19 +344,19 @@ class IssuesProcessor {
             if (this.options.debugOnly) {
                 return;
             }
-            if (!skipMessage) {
-                try {
-                    yield this.client.issues.createComment({
-                        owner: github_1.context.repo.owner,
-                        repo: github_1.context.repo.repo,
-                        issue_number: issue.number,
-                        body: staleMessage
-                    });
-                }
-                catch (error) {
-                    issueLogger.error(`Error creating a comment: ${error.message}`);
-                }
-            }
+//            if (!skipMessage) {
+//                try {
+//                    yield this.client.issues.createComment({
+//                        owner: github_1.context.repo.owner,
+//                        repo: github_1.context.repo.repo,
+//                        issue_number: issue.number,
+//                        body: staleMessage
+//                    });
+//                }
+//                catch (error) {
+//                    issueLogger.error(`Error creating a comment: ${error.message}`);
+//                }
+//            }
 //            try {
 //                yield this.client.issues.addLabels({
 //                    owner: github_1.context.repo.owner,
